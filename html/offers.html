@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>باقات وعروض - Motor Fix</title>
+    <link rel="stylesheet" href="../css/offers.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Favicons -->
+    <link
+      rel="shortcut icon"
+      href="../favIcon/favicon.ico"
+      type="image/x-icon"
+    />
+
+    <link
+      rel="icon"
+      href="../favIcon/favicon-16x16.png"
+      type="image/png"
+      sizes="16x16"
+    />
+    <link
+      rel="icon"
+      href="../favIcon/favicon-32x32.png"
+      type="image/png"
+      sizes="32x32"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../favIcon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="../favIcon/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="../favIcon/android-chrome-512x512.png"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <nav class="navbar">
+          <div class="logo">
+            <a href="../index.html">
+              <img
+                src="../assets/images/logo.png"
+                alt="Motor Fix"
+                class="logo-img"
+              />
+            </a>
+          </div>
+
+          <ul class="nav-links">
+            <li><a href="../index.html">الرئيسية</a></li>
+            <li><a href="categories.html">التصنيفات</a></li>
+            <li><a href="products.html">المنتجات</a></li>
+            <li><a href="offers.html" class="active">العروض</a></li>
+            <li><a href="about.html">عن الشركة</a></li>
+            <li><a href="contact.html">اتصل بنا</a></li>
+            <li class="cart-icon">
+              <a href="cart.html">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+              </a>
+            </li>
+            <li class="favorite-icon">
+              <a href="fav.html">
+                <i class="fas fa-heart"></i>
+                <span class="favorite-count">0</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="offers-hero">
+      <div class="container">
+        <div class="offers-hero-content">
+          <h1>باقات وعروض حصرية</h1>
+          <p>اكتشف مجموعتنا المميزة من الباقات والعروض التوفيرية</p>
+          <div class="offers-hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">20+</span>
+              <span class="stat-label">باقة متنوعة</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">40%</span>
+              <span class="stat-label">توفير يصل إلى</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">1000+</span>
+              <span class="stat-label">عميل وثق بنا</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Offers Filter -->
+    <section class="offers-filter">
+      <div class="container">
+        <div class="filter-header">
+          <h2>اختر الباقة المناسبة</h2>
+          <p>باقات متنوعة تناسب جميع الاحتياجات</p>
+        </div>
+
+        <div class="filter-controls">
+          <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">
+              جميع الباقات
+            </button>
+            <button class="filter-tab" data-filter="bundle">
+              باقات ميكانيكا
+            </button>
+            <button class="filter-tab" data-filter="electrical">
+              باقات كهرباء
+            </button>
+            <button class="filter-tab" data-filter="maintenance">
+              باقات صيانة
+            </button>
+            <button class="filter-tab" data-filter="season">عروض موسمية</button>
+          </div>
+
+          <div class="filter-sort">
+            <select id="sortBundles">
+              <option value="default">ترتيب حسب</option>
+              <option value="saving-high">الأعلى توفيراً</option>
+              <option value="price-low">الأقل سعراً</option>
+              <option value="price-high">الأعلى سعراً</option>
+              <option value="popular">الأكثر مبيعاً</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bundles Grid -->
+    <section class="bundles-section section-padding">
+      <div class="container">
+        <div class="bundles-grid" id="bundlesGrid">
+          <!-- Bundles will be loaded here -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-container" id="paginationContainer">
+          <!-- Pagination will be generated here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Bundle Features -->
+    <section class="bundle-features">
+      <div class="container">
+        <div class="features-grid">
+          <div class="feature-item">
+            <i class="fas fa-gem"></i>
+            <h3>جودة مضمونة</h3>
+            <p>جميع القطع أصلية 100% مع ضمان</p>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-truck"></i>
+            <h3>توصيل مجاني</h3>
+            <p>لجميع الباقات داخل القاهرة الكبرى</p>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-headset"></i>
+            <h3>دعم فني</h3>
+            <p>استشارات مجانية قبل الشراء</p>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-percent"></i>
+            <h3>أفضل سعر</h3>
+            <p>أقل سعر في السوق مضمون</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h3>Motor Fix</h3>
+            <p>
+              متجرك الموثوق لقطع غيار السيارات الأصلية بأسعار تنافسية وخدمة
+              مميزة في مصر.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4>روابط سريعة</h4>
+            <ul>
+              <li><a href="../index.html">الرئيسية</a></li>
+              <li><a href="categories.html">التصنيفات</a></li>
+              <li><a href="products.html">المنتجات</a></li>
+              <li><a href="offers.html">العروض</a></li>
+              <li><a href="about.html">عن الشركة</a></li>
+              <li><a href="contact.html">اتصل بنا</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>سياسات</h4>
+            <ul>
+              <li><a href="contact.html">سياسة الإرجاع</a></li>
+              <li><a href="contact.html">الشروط والأحكام</a></li>
+              <li><a href="contact.html">سياسة الخصوصية</a></li>
+              <li><a href="contact.html">الدعم الفني</a></li>
+              <li><a href="contact.html">الأسئلة الشائعة</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>اتصل بنا</h4>
+            <ul class="contact-info">
+              <li>
+                <i class="fas fa-map-marker-alt"></i>
+                <span>كفرالشيخ - مصر</span>
+              </li>
+              <li>
+                <i class="fas fa-phone"></i>
+                <span>01013706142</span>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <span>abdelkader@gmail.com</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            جميع الحقوق محفوظة &copy;
+            <span class="current-year">2026</span> Motor Fix
+          </p>
+          <p class="developer-credit">
+            <a
+              href="https://api.whatsapp.com/send?phone=201013706142"
+              target="_blank"
+              class="developer-link"
+            >
+              Abdelkader Mohamed &
+            </a>
+            <a
+              href="https://api.whatsapp.com/send?phone=201010942959"
+              target="_blank"
+              class="developer-link"
+            >
+              Ahmed Nada
+            </a>
+            تطوير
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script src="../js/offers.js"></script>
+  </body>
+</html>
