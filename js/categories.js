@@ -1,22 +1,9 @@
 // Categories page functionality
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     updateCartCount();
     updateFavoriteCount();
     setupMobileMenu();
     loadCategories();
-    loadPopularProducts();
-    
-    // Add to cart from popular products
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('btn-add-cart') || 
-            e.target.closest('.btn-add-cart')) {
-            const productId = parseInt(e.target.dataset.productId || 
-                                     e.target.closest('.btn-add-cart').dataset.productId);
-            if (productId) {
-                addToCart(productId);
-            }
-        }
-    });
 });
 
 // Load categories
@@ -92,115 +79,12 @@ function loadCategories() {
     `).join('');
 }
 
-// Load popular products
-function loadPopularProducts() {
-    const popularProducts = [
-        {
-            id: 1,
-            name: "زيت محرك سينتيك 5W-30",
-            price: 85,
-            image: "https://via.placeholder.com/300x200/333/fff?text=زيت+محرك",
-            rating: 4.5
-        },
-        {
-            id: 2,
-            name: "بطارية سيارة 60 أمبير",
-            price: 320,
-            image: "https://via.placeholder.com/300x200/333/fff?text=بطارية",
-            rating: 4.3
-        },
-        {
-            id: 3,
-            name: "إطار هانكوك 205/55R16",
-            price: 280,
-            image: "https://via.placeholder.com/300x200/333/fff?text=إطار",
-            rating: 4.7
-        },
-        {
-            id: 4,
-            name: "فلتر هواء تويوتا",
-            price: 45,
-            image: "https://via.placeholder.com/300x200/333/fff?text=فلتر+هواء",
-            rating: 4.2
-        }
-    ];
-
-    const container = document.getElementById('popularProducts');
-    if (!container) return;
-
-    container.innerHTML = popularProducts.map(product => `
-        <div class="product-card">
-            <div class="product-image">
-                <img src="${product.image}" alt="${product.name}">
-            </div>
-            <div class="product-info">
-                <h3>${product.name}</h3>
-                <span class="product-price">${product.price} جنيه</span>
-                <div class="product-rating">
-                    ${generateStars(product.rating)}
-                </div>
-                <div class="product-actions">
-                    <a href="product-details.html?id=${product.id}" class="btn btn-view">عرض التفاصيل</a>
-                    <button class="btn btn-add-cart" data-product-id="${product.id}">أضف للسلة</button>
-                </div>
-            </div>
-        </div>
-    `).join('');
-}
-
-// Generate stars for rating
-function generateStars(rating) {
-    let stars = '';
-    for (let i = 1; i <= 5; i++) {
-        if (i <= Math.floor(rating)) {
-            stars += '<i class="fas fa-star"></i>';
-        } else if (i === Math.ceil(rating) && !Number.isInteger(rating)) {
-            stars += '<i class="fas fa-star-half-alt"></i>';
-        } else {
-            stars += '<i class="far fa-star"></i>';
-        }
-    }
-    return stars;
-}
-
-// Add to cart function
-function addToCart(productId) {
-    const popularProducts = [
-        { id: 1, name: "زيت محرك سينتيك 5W-30", price: 85, image: "https://via.placeholder.com/300x200/333/fff?text=زيت+محرك" },
-        { id: 2, name: "بطارية سيارة 60 أمبير", price: 320, image: "https://via.placeholder.com/300x200/333/fff?text=بطارية" },
-        { id: 3, name: "إطار هانكوك 205/55R16", price: 280, image: "https://via.placeholder.com/300x200/333/fff?text=إطار" },
-        { id: 4, name: "فلتر هواء تويوتا", price: 45, image: "https://via.placeholder.com/300x200/333/fff?text=فلتر+هواء" }
-    ];
-    
-    const product = popularProducts.find(p => p.id === productId);
-    if (!product) return;
-    
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const existingItem = cart.find(item => item.id === productId);
-    
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.push({
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            image: product.image,
-            quantity: 1
-        });
-    }
-    
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-    showNotification(`تم إضافة ${product.name} إلى سلة التسوق`);
-}
-
 // Update cart count
 function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const cartCountElements = document.querySelectorAll('.cart-count');
-    cartCountElements.forEach(element => {
+
+    document.querySelectorAll('.cart-count').forEach(element => {
         element.textContent = cartCount;
     });
 }
@@ -208,8 +92,8 @@ function updateCartCount() {
 // Update favorite count
 function updateFavoriteCount() {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    const favoriteCountElements = document.querySelectorAll(".favorite-count");
-    favoriteCountElements.forEach((element) => {
+
+    document.querySelectorAll(".favorite-count").forEach(element => {
         element.textContent = favorites.length;
     });
 }
@@ -219,6 +103,7 @@ function showNotification(message) {
     const notification = document.createElement('div');
     notification.className = 'notification';
     notification.textContent = message;
+
     notification.style.cssText = `
         position: fixed;
         top: 20px;
@@ -231,9 +116,9 @@ function showNotification(message) {
         box-shadow: var(--shadow);
         animation: slideIn 0.3s ease;
     `;
-    
+
     document.body.appendChild(notification);
-    
+
     setTimeout(() => {
         notification.style.animation = 'slideOut 0.3s ease';
         setTimeout(() => notification.remove(), 300);
@@ -244,14 +129,13 @@ function showNotification(message) {
 function setupMobileMenu() {
     const menuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
-    
+
     if (menuBtn) {
         menuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
     }
-    
-    // Close menu when clicking outside
+
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.navbar') && navLinks.classList.contains('active')) {
             navLinks.classList.remove('active');
